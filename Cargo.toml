@@ -1,0 +1,26 @@
+[package]
+edition = "2021"
+name = "cc_api"
+version = "0.1.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+bevy = "0.6"
+bevy_pancam = "0.2.0"
+bevy_web_asset = "0.2.0"
+blake3 = "1.2.0"
+chrono = "0.4.19"
+geo-types = "0.7.2"
+googleprojection = "1.2.0"
+h3ron = "0.13.0"
+rand = "0.8.4"
+slippy-map-tiles = "0.16.0"
+
+[lib]
+name = "cc"
+path = "src/lib.rs"
+
+[[bin]]
+name = "game"
+path = "src/bin.rs"
