@@ -4,9 +4,10 @@ pub use h3ron::H3Cell;
 use h3ron::Index;
 use rand::{prelude::StdRng, Rng, SeedableRng};
 
+#[derive(bevy::prelude::Component, Debug)]
 pub struct Spacetime {
-    space: H3Cell,
-    time: DateTime<Utc>,
+    pub space: H3Cell,
+    pub time: DateTime<Utc>,
 }
 
 impl Spacetime {
@@ -37,8 +38,9 @@ mod tests {
 
     #[test]
     fn scratchpad() {
-        let tile = lat_lon_to_tile(38.876860, -77.154240, 19);
-        dbg!(tile);
+        // let home = (38.876860, -77.154240);
+        // let web_mercator = Proj::new("EPSG:3857").unwrap();
+        // dbg!(web_mercator);
     }
 }
 use rand::distributions::WeightedIndex;
@@ -48,7 +50,7 @@ pub fn get_creature_at_spacetime(st: &Spacetime) -> Option<&'static str> {
     let seed = st.hash();
     let mut rng = StdRng::from_seed(seed.into());
     let choices = [Some("pikachu.png"), Some("bulbasaur.png"), None];
-    let weights = [1, 1, 100];
+    let weights = [1, 1, 1000];
     let dist = WeightedIndex::new(&weights).unwrap();
     choices[dist.sample(&mut rng)]
 }
